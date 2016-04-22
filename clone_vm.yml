@@ -29,7 +29,7 @@
         vcenter_hostname: "{{ lookup('env', 'VMWARE_HOST') }}"
         username: "{{ lookup('env', 'VMWARE_USER') }}"
         password: "{{ lookup('env', 'VMWARE_PASSWORD') }}"
-        guest: {{ guest }}
+        guest: "{{ guest }}"
         vm_hardware:
           memory_mb: 4096
           num_cpus: 4
