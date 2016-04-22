@@ -1,0 +1,39 @@
+---
+# Playbook to clone VM
+# After clone taks, let's modiy the VM
+- name: deploy vm from clone
+  hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: clone vm
+      vsphere_guest:
+        power_on_after_clone: False
+        validate_certs: False
+        vcenter_hostname: vc01.t-i.demo	
+        username: root@t-i.demo
+        password: UCS@dmin01
+        guest: vm01
+        from_template: yes
+        template_src: "ubuntu-14.04.3 LTS"
+        esxi:
+          datacenter: Telindus
+          hostname: ntnx1a.t-i.demo
+        vm_extra_config:
+          folder: VRM
+
+    - name: set specs
+      vsphere_guest:
+        state: reconfigured
+        validate_certs: False
+        vcenter_hostname: vc01.t-i.demo	
+        username: root@t-i.demo
+        password: UCS@dmin01
+        guest: vm01
+        vm_hardware:
+          memory_mb: 4096
+          num_cpus: 4
+        vm_disk:
+          disk2:
+            size_gb: 50
+            type: thin
+            datastore: nfs-ctr
