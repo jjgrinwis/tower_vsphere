@@ -34,3 +34,12 @@
         vm_hardware:
           memory_mb: "{{ memory }}"
           num_cpus: "{{ cpus }}"
+
+    - name: power on VM
+      vsphere_guest:
+        state: powered_on
+        validate_certs: False
+        vcenter_hostname: "{{ lookup('env', 'VMWARE_HOST') }}"
+        username: "{{ lookup('env', 'VMWARE_USER') }}"
+        password: "{{ lookup('env', 'VMWARE_PASSWORD') }}"
+        guest: "{{ hostname }}"
