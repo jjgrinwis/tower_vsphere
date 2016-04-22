@@ -1,5 +1,6 @@
 ---
 # Playbook to clone VM
+# should be used with latest version of vsphere_guests.py
 # After clone taks, let's modiy the VM
 
 - name: deploy vm from clone
@@ -9,13 +10,13 @@
     - name: clone vm
       vsphere_guest:
         power_on_after_clone: False
-        #validate_certs: False
+        validate_certs: False
         vcenter_hostname: "{{ lookup('env', 'VMWARE_HOST') }}"
         username: "{{ lookup('env', 'VMWARE_USER') }}"
         password: "{{ lookup('env', 'VMWARE_PASSWORD') }}"
-        guest: "{{ guest }}"
+        guest: "{{ hostname }}"
         from_template: yes
-        template_src: "ubuntu-14.04.3 LTS"
+        template_src: "{{ template }}"
         esxi:
           datacenter: aci
           hostname: esxi01.tid3.t-i.demo
@@ -29,7 +30,7 @@
         vcenter_hostname: "{{ lookup('env', 'VMWARE_HOST') }}"
         username: "{{ lookup('env', 'VMWARE_USER') }}"
         password: "{{ lookup('env', 'VMWARE_PASSWORD') }}"
-        guest: "{{ guest }}"
+        guest: "{{ hostname }}"
         vm_hardware:
-          memory_mb: 4096
-          num_cpus: 4
+          memory_mb: "{{ memory }}"
+          num_cpus: "{{ cpus }}"
