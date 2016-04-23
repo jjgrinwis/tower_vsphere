@@ -1,9 +1,10 @@
 ---
 # playbook to set hostname of vm
 # ip address coming from inventory
+
 - name: Install stuff in the VM
   hosts: "{{ hostname }}"
   gather_facts: True
   tasks:
     - name: first set hostname
-      hostname: "{{ hostname }}"
+      debug: var={{ hostame }}
