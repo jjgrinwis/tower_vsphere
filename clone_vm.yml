@@ -43,3 +43,17 @@
         username: "{{ lookup('env', 'VMWARE_USER') }}"
         password: "{{ lookup('env', 'VMWARE_PASSWORD') }}"
         guest: "{{ hostname }}"
+
+    - name: wait for the VM to boot
+      pause: 
+        prompt: "waiting for the VM to wake up"
+        seconds: 30
+
+    - name: gather some facts about this vm
+      vsphere_guest:
+        validate_certs: False
+        vcenter_hostname: "{{ lookup('env', 'VMWARE_HOST') }}"
+        username: "{{ lookup('env', 'VMWARE_USER') }}"
+        password: "{{ lookup('env', 'VMWARE_PASSWORD') }}"
+        guest: "{{ hostname }}"
+        vmware_guest_facts: yes
