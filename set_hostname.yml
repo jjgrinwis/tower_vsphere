@@ -3,11 +3,8 @@
 # ip address coming from inventory
 
 - name: Install stuff in the VM
-  hosts: localhost
+  hosts: {{ host }}
   gather_facts: True
   tasks:
     - name: first set hostname
-      setup:
-      register: output
-
-    - debug: var=output 
+      debug: host
