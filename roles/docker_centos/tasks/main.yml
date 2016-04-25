@@ -1,0 +1,13 @@
+---
+# check if centos version is 7 or higher
+# then install docker using script
+
+- name: check Centos version
+  fail: msg="Centos version should by 7 or higher"
+  when: ansible_distribution_major_version < 7
+
+- name: first yum update
+  yum: update_cache=yes name=curl state=present
+
+- name: use Docker installation script with curl
+  command: curl -fsSL https://get.docker.com/ | sh

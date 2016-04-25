@@ -1,0 +1,39 @@
+---
+# playbook to install docker on a host
+# first check some common kernel parameters
+# then start specific role for a platform
+# then back to some common tasks to start docker service
+
+- name: Install docker containers
+  hosts: localhost
+  sudo: Yes
+  gather_facts: True
+  pre_tasks:
+
+    - debug: var=ansible_kernel.split('.')[0]
+
+    - name: check if mayor kernel version > 2
+      fail: msg="incorrect kernel version, should be > 3.10"
+      when: ansible_kernel.split('.')[0] < 3
+
+    - name: check if minor kernel version > 10
+      fail: msg="incorrect kernel version, should be > 3.10"
+      when: ansible_kernel.split('.')[1] < 11
+
+    - name: check if we have a x86_64 platform
+      fail: msg="Docker should be running on a x86_64 platform"
+      when: ansible_machine != "x86_64"
+
+  roles: 
+    - { role: docker_ubuntu, when: ansible_distribution == 'Ubuntu' }
+    - { role: docker_centos, when: ansible_distribution == 'Centos' }
+
+  tasks:
+    - name: start docker deamon
+      service: name=docker state=started
+
+    - name: run a Docker hello world
+      command: docker run hello-world
+      register: output
+
+    - debug: var=output
