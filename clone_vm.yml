@@ -17,9 +17,8 @@
         guest: "{{ hostname }}"
         from_template: yes
         template_src: "{{ template }}"
-        esxi:
-          datacenter: aci
-          hostname: esxi01.tid3.t-i.demo
+        cluster: aci
+        resource_pool: "{{ pool }}"
         vm_extra_config:
           folder: Ansible
 
