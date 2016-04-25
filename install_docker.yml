@@ -6,7 +6,6 @@
 
 - name: Install docker containers
   hosts: localhost
-  sudo: Yes
   gather_facts: True
   pre_tasks:
 
