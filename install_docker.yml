@@ -7,7 +7,7 @@
 - name: Install docker containers
   hosts: all
   gather_facts: True
-  become_user: root
+  remote_user: root
   pre_tasks:
 
     - debug: var=ansible_kernel.split('.')[0]
