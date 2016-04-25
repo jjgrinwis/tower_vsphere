@@ -7,18 +7,10 @@
   hosts: localhost
   gather_facts: no
   tasks:
-    - name: poweroff VM
-      vsphere_guest:
-        state: powered_off
-        validate_certs: False
-        vcenter_hostname: "{{ lookup('env', 'VMWARE_HOST') }}"
-        username: "{{ lookup('env', 'VMWARE_USER') }}"
-        password: "{{ lookup('env', 'VMWARE_PASSWORD') }}"
-        guest: "{{ hostname }}"
-
     - name: remove VM
       vsphere_guest:
         state: absent
+        force: True
         validate_certs: False
         vcenter_hostname: "{{ lookup('env', 'VMWARE_HOST') }}"
         username: "{{ lookup('env', 'VMWARE_USER') }}"
