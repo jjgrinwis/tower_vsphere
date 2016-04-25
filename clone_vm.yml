@@ -18,7 +18,7 @@
         from_template: yes
         template_src: "{{ template }}"
         cluster: aci
-        resource_pool: "{{ pool }}"
+        resource_pool: "/Resources/{{ pool }}"
         vm_extra_config:
           folder: Ansible
 
