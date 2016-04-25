@@ -5,7 +5,7 @@
 # then back to some common tasks to start docker service
 
 - name: Install docker containers
-  hosts: localhost
+  hosts: all
   gather_facts: True
   pre_tasks:
 
