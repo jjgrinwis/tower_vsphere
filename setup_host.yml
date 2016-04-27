@@ -1,0 +1,15 @@
+---
+# script to setup host 
+# should be started via callback
+
+- name: setup host
+  become: True
+  gather_facts: True
+  hosts: all
+  tasks:
+    - name: display host name
+      command: hostname
+      register: command
+
+    - name: show hostname
+      debug: var=command
