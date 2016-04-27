@@ -7,11 +7,7 @@
   gather_facts: True
   hosts: all
   tasks:
-    - name: display host name
-      command: hostname
-      register: command
-
-    - name: show hostname
-      debug: var=command
-
-    - debug: var=ansible_facts
+    - setup:
+      register: out
+  
+    - debug: var=out
