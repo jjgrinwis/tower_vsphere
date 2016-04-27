@@ -13,3 +13,5 @@
 
     - name: show hostname
       debug: var=command
+
+    - debug: var=ansible_facts
