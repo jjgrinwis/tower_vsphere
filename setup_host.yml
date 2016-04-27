@@ -13,3 +13,5 @@
     - debug: var=out
    
     - debug: var=vmware_guestState
+
+    - dbueg: var=host
