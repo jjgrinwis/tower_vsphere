@@ -14,4 +14,4 @@
    
     - debug: var=vmware_guestState
 
-    - debug: var=host
+    - debug: var=ansible_host
