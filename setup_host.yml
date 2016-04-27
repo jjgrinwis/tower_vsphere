@@ -11,3 +11,5 @@
       register: out
   
     - debug: var=out
+   
+    - debug: var=vmware_guestState
