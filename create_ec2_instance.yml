@@ -7,7 +7,6 @@
 # using sort and sort_end to only display latest version
 - name: search ami
   hosts: localhost
-  become: True
   vars:
      name: "amzn-ami-hvm-*-ebs"
   tasks:
