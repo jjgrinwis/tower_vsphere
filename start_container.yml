@@ -1,0 +1,17 @@
+---
+# Ansible playbook to start a very simple docker container
+# We need to set docker_api_version and install docker-py on container host
+- name: start a couple of simple containers
+  hosts: all
+  become: True
+  tasks:
+    - name: make sure docker-py is installed on container hosts, needed by ansible
+      pip: name=docker-py state=present
+
+    - name: start our small demo container
+      docker:
+        docker_api_version: 1.21
+        name: hello_world
+        image: ubuntu
+        state: started
+        command: echo 'hello world'
