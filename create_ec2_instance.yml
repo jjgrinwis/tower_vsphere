@@ -77,7 +77,7 @@
           group: ansible 
           os: linux
           owner: id984390
-        exact_count: 2
+        exact_count: 3
         count_tag: { group: ansible }
       register: ec2
 
